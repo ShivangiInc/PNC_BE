@@ -8,7 +8,10 @@ from .views import (
     RenameColumnView,
     ExcelExportView,
     PdfExportView,
-    DeletionApprovedView
+    ColDeletionApprovedView,
+    ColDeletionRejectedView,
+    RecordDeletionApproved,
+    RecordDeletionDisapproved,
 )
 
 urlpatterns = [
@@ -25,9 +28,26 @@ urlpatterns = [
         "soft-delete-column/", SoftDeleteColumnView.as_view(), name="soft_delete_column"
     ),
     path("rename-column/", RenameColumnView.as_view(), name="rename_column"),
-    path('export/excel/', ExcelExportView.as_view(), name='export_excel'),
-    path('export/pdf/', PdfExportView.as_view(), name='export_pdf'),
-    path('deleted_by_admin/<str:record_id>/',DeletionApprovedView.as_view(), name="deleted_by_admin"),
-
-
+    path("export/excel/", ExcelExportView.as_view(), name="export_excel"),
+    path("export/pdf/", PdfExportView.as_view(), name="export_pdf"),
+    path(
+        "col_deletion_approval/",
+        ColDeletionApprovedView.as_view(),
+        name="col_deletion_approval",
+    ),
+    path(
+        "col_deletion_rejection/",
+        ColDeletionRejectedView.as_view(),
+        name="col_deletion_rejection",
+    ),
+    path(
+        "record_deletion_approved/",
+        RecordDeletionApproved.as_view(),
+        name="record_deletion_approved",
+    ),
+    path(
+        "record_deletion_disapproved/",
+        RecordDeletionDisapproved.as_view(),
+        name="record_deletion_disapproved",
+    ),
 ]
